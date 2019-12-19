@@ -1,0 +1,23 @@
+{% extends "basic.html" %}
+
+{% load bootstrap4 %}
+
+{% block title %}Вход{% endblock %}
+
+{% block content %}
+<h2>Вход</h2>
+{% if user.is_authenticated %}
+<p>Вы уже выполнили вход.</p>
+{% else %}
+<div style="width:30%;">
+<form method="post">
+    {% csrf_token %}
+    {% bootstrap_form form layout='vertical' %}
+    <input type="hidden" name="next" value="{{ next }}">
+    {% buttons submit='Войти' %}{% endbuttons %}
+</form>
+</div>
+<p><a href="">Войти через ВКонтакте</a></p>
+<p><a href="">Сброс пароля</a></p>
+{% endif %}
+{% endblock %}
